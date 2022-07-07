@@ -1,11 +1,11 @@
 .wrapper {
     min-width: 100px;
-    padding: 18px 12px;
+    padding: 9px 12px;
     border: 1px solid transparent;
     border-radius: 4px;
     font-weight: 700;
     font-size: 1.6rem;
-    line-height: 0;
+    line-height: 1;
     cursor: pointer;
 
     + .wrapper {
@@ -28,7 +28,7 @@
     }
 }
 
-.outline {
+.outlined {
     color: var(--primary);
     background-color: var(--white);
     border: 1px solid var(--primary);
@@ -38,8 +38,20 @@
     }
 }
 
+.rounded {
+    color: var(--primary);
+    background-color: var(--white);
+    border: 1px solid var(--primary);
+    border-radius: 999px;
+
+    &:hover {
+        background-color: rgba(254, 44, 85, 0.06);
+    }
+}
+
 .text {
-    background: var(--white);
+    color: var(--text);
+    background-color: var(--white);
 
     &:hover {
         text-decoration: underline;

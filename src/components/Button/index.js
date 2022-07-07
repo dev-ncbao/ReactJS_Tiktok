@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
@@ -5,22 +6,37 @@ import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Button({ to, href, primary = false, outline = false, text = false, iconLeft, iconRight, children }) {
+function Button(
+    {
+        to,
+        href,
+        primary = false,
+        outlined = false,
+        rounded = false,
+        text = false,
+        iconLeft,
+        iconRight,
+        children,
+        className,
+        ...passingProps
+    },
+    ref,
+) {
     let Comp = 'button';
 
     const props = {
         to,
         href,
-        primary,
-        outline,
-        text,
+        ...passingProps,
     };
 
-    const classes = {
+    const classes = cx('wrapper', {
+        [className]: className,
         primary,
-        outline,
+        outlined,
+        rounded,
         text,
-    };
+    });
 
     if (to) {
         Comp = Link;
@@ -29,7 +45,7 @@ function Button({ to, href, primary = false, outline = false, text = false, icon
     }
 
     return (
-        <Comp className={cx('wrapper', { ...classes })} {...props}>
+        <Comp ref={ref} className={classes} {...props}>
             {iconLeft && <span className={cx('icon')}>{iconLeft}</span>}
             <span className={cx('title')}>{children}</span>
             {iconRight && <span className={cx('icon')}>{iconRight}</span>}
@@ -37,4 +53,4 @@ function Button({ to, href, primary = false, outline = false, text = false, icon
     );
 }
 
-export default Button;
+export default forwardRef(Button);
